@@ -1,0 +1,14 @@
+# Uncomment the next line to define a global platform for your project
+use_frameworks!
+
+platform :ios, '17.0'
+
+install! 'cocoapods', :deterministic_uuids => false
+
+target 'iosApp' do
+  pod 'composeApp', :path=> '../composeApp/'
+
+  pre_install do |installer|
+    FileUtils.mkdir_p(installer.sandbox.root.to_s + '/../../composeApp/build/generated/libres/apple/libres-bundles')
+  end
+end

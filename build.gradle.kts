@@ -6,5 +6,4 @@ plugins {
     alias(libs.plugins.buildConfig).apply(false)
     alias(libs.plugins.kotlinx.serialization).apply(false)
     alias(libs.plugins.sqlDelight).apply(false)
-    kotlin("native.cocoapods").version("1.9.20").apply(false)
 }

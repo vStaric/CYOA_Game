@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
-    kotlin("native.cocoapods")
 }
 
 kotlin {
@@ -32,9 +31,6 @@ kotlin {
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {
-        cocoapods {
-            version = "1.0.0"
-        }
         it.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
@@ -57,10 +53,10 @@ kotlin {
             implementation("dev.icerock.moko:mvvm-compose:0.16.1")
             implementation("dev.icerock.moko:mvvm-flow:0.16.1")
             implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
+            implementation(libs.kstore)
             implementation(libs.ktor.core)
             implementation(libs.composeIcons.featherIcons)
             implementation(libs.kotlinx.serialization.json)
-            //implementation(libs.kotlinx.datetime)
             implementation(libs.multiplatformSettings)
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
@@ -77,6 +73,8 @@ kotlin {
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.sqlDelight.driver.android)
+
+            implementation(libs.kstore.file)
         }
 
         jvmMain.dependencies {
@@ -84,16 +82,23 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.sqlDelight.driver.sqlite)
+            implementation("net.harawata:appdirs:1.2.2")
+
+            implementation(libs.kstore.file)
         }
 
         jsMain.dependencies {
             implementation(compose.html.core)
             implementation(libs.sqlDelight.driver.js)
+
+            implementation(libs.kstore.storage)
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
             implementation(libs.sqlDelight.driver.native)
+
+            implementation(libs.kstore.file)
         }
 
     }
@@ -146,6 +151,7 @@ compose.experimental {
 libres {
     // https://github.com/Skeptick/libres#setup
 }
+
 tasks.getByPath("jvmProcessResources").dependsOn("libresGenerateResources")
 tasks.getByPath("jvmSourcesJar").dependsOn("libresGenerateResources")
 tasks.getByPath("jsProcessResources").dependsOn("libresGenerateResources")
