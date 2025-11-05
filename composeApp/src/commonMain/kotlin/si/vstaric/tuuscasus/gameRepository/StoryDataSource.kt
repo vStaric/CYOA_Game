@@ -124,6 +124,12 @@ class StoryDataSource {
                 COYAState.StoryActions(
                     defaultActions = listOf(
                         Action.DefaultAction(
+                            actionId = "goto_rooftop_garden",
+                            text = "Go To The Rooftop Garden",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "goto_rooftop_garden"
+                        ),
+                        Action.DefaultAction(
                             actionId = "wander_the_streets",
                             text = "Wander The Streets",
                             state = ActionState.ENABLED,
@@ -363,7 +369,276 @@ class StoryDataSource {
                     defaultActions = listOf(
                         Action.DefaultAction(
                             actionId = "rps_start",
-                            text = "Wake Up!",
+                            text = "Try Again",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "rps_start"
+                        ),
+                        Action.DefaultAction(
+                            actionId = "explore_cave_deeper",
+                            text = "Ignore Him and Explore Deeper",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "explore_cave_deeper"
+                        )
+                    )
+                )
+            )
+        )
+
+        // NEW CONTENT: Rooftop Garden Path
+        val RooftopGardenEntrance = StoryBranch(
+            storyBranchId = "goto_rooftop_garden",
+            list = listOf(
+                COYAState.Image(imageUrl = "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae"),
+                COYAState.Story(
+                    text = "Following the barista's directions, I climbed a narrow staircase hidden between two buildings. The sounds of the city faded as I ascended, replaced by the gentle rustling of leaves and distant birdsong."
+                ),
+                COYAState.Story(
+                    text = "At the top, I pushed open a weathered door and stepped into an unexpected paradise. The rooftop garden sprawled before me—a tapestry of green amid the concrete jungle. Flowers of every color bloomed in carefully tended beds, and vines cascaded down trellises."
+                ),
+                COYAState.Image(imageUrl = "https://images.unsplash.com/photo-1588417865884-b074fe2f7b85"),
+                COYAState.Story(
+                    text = "In the center of the garden, an elderly woman knelt beside a bed of roses, her weathered hands working the soil with practiced care. She looked up as I approached, her eyes twinkling with kindness."
+                ),
+                COYAState.Dialogue(
+                    text = "Ah, a new visitor! The barista sent you, didn't they? Welcome to my sanctuary.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.GardenKeeper
+                ),
+                COYAState.Dialogue(
+                    text = "This place is incredible. How long have you been maintaining this garden?",
+                    type = DialogType.RIGHT,
+                    character = si.vstaric.tuuscasus.game.model.Character.Player
+                ),
+                COYAState.Dialogue(
+                    text = "Nearly forty years now. This garden has been my teacher, my friend, and my refuge. Every plant here has a story, and every story has a lesson.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.GardenKeeper
+                ),
+                COYAState.StoryActions(
+                    defaultActions = listOf(
+                        Action.DefaultAction(
+                            actionId = "ask_about_garden",
+                            text = "Ask About The Garden",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "ask_about_garden"
+                        ),
+                        Action.DefaultAction(
+                            actionId = "explore_garden",
+                            text = "Explore The Garden",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "explore_garden"
+                        )
+                    )
+                )
+            )
+        )
+
+        val AskAboutGarden = StoryBranch(
+            storyBranchId = "ask_about_garden",
+            list = listOf(
+                COYAState.Dialogue(
+                    text = "Tell me about this place. What makes it so special?",
+                    type = DialogType.RIGHT,
+                    character = si.vstaric.tuuscasus.game.model.Character.Player
+                ),
+                COYAState.Dialogue(
+                    text = "This garden represents the balance between chaos and order, growth and decay. In the city below, people rush through life, never pausing to breathe. Here, time moves differently.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.GardenKeeper
+                ),
+                COYAState.Dialogue(
+                    text = "Each plant teaches patience. The roses remind us that beauty requires care and sometimes enduring thorns. The bamboo shows us strength through flexibility.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.GardenKeeper
+                ),
+                COYAState.Story(
+                    text = "She stood up slowly, brushing soil from her knees, and gestured to a secluded corner of the garden where a small meditation area sat beneath a blooming wisteria."
+                ),
+                COYAState.Dialogue(
+                    text = "Would you like to sit for a while? Sometimes the garden speaks to those who listen.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.GardenKeeper
+                ),
+                COYAState.StoryActions(
+                    defaultActions = listOf(
+                        Action.DefaultAction(
+                            actionId = "meditate_in_garden",
+                            text = "Sit and Meditate",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "meditate_in_garden"
+                        ),
+                        Action.DefaultAction(
+                            actionId = "decline_meditation",
+                            text = "Decline and Return to the City",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "wander_the_streets"
+                        )
+                    )
+                )
+            )
+        )
+
+        val ExploreGarden = StoryBranch(
+            storyBranchId = "explore_garden",
+            list = listOf(
+                COYAState.Image(imageUrl = "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735"),
+                COYAState.Story(
+                    text = "I wandered through the garden paths, discovering hidden corners and unexpected delights. A small fountain burbled peacefully, surrounded by smooth stones. Butterflies danced among the lavender."
+                ),
+                COYAState.Story(
+                    text = "In one corner, I noticed something peculiar—a section where the plants grew in an unusual pattern, almost like a labyrinth. At its center, a single white lily bloomed, pristine and luminous."
+                ),
+                COYAState.Story(
+                    text = "As I reached for the flower, the Garden Keeper's voice called out."
+                ),
+                COYAState.Dialogue(
+                    text = "Ah, you found the Heart of the Garden. Many visitors walk past it, but you were drawn to it. That flower only blooms for those seeking something more than just beauty.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.GardenKeeper
+                ),
+                COYAState.StoryActions(
+                    defaultActions = listOf(
+                        Action.DefaultAction(
+                            actionId = "meditate_in_garden",
+                            text = "Sit Near The Lily",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "meditate_in_garden"
+                        ),
+                        Action.DefaultAction(
+                            actionId = "ask_about_garden",
+                            text = "Ask About The Garden",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "ask_about_garden"
+                        )
+                    )
+                )
+            )
+        )
+
+        val MeditateInGarden = StoryBranch(
+            storyBranchId = "meditate_in_garden",
+            list = listOf(
+                COYAState.Image(imageUrl = "https://images.unsplash.com/photo-1499209974431-9dddcece7f88"),
+                COYAState.Story(
+                    text = "I settled onto the cushion beneath the wisteria, closing my eyes and breathing in the fragrant air. The sounds of the city below became a distant hum, like the ocean heard from far away."
+                ),
+                COYAState.Story(
+                    text = "Minutes passed, or perhaps hours—time seemed to lose its meaning. In the stillness, I felt something shift within me. The constant chatter of my mind quieted, replaced by a profound sense of peace."
+                ),
+                COYAState.Story(
+                    text = "When I finally opened my eyes, the garden seemed somehow different—more vibrant, more alive. The Garden Keeper sat nearby, smiling knowingly."
+                ),
+                COYAState.Dialogue(
+                    text = "You've found it, haven't you? The silence between thoughts. The space where true understanding grows.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.GardenKeeper
+                ),
+                COYAState.Dialogue(
+                    text = "I feel... different. Lighter, somehow. Like I've been carrying something heavy and just set it down.",
+                    type = DialogType.RIGHT,
+                    character = si.vstaric.tuuscasus.game.model.Character.Player
+                ),
+                COYAState.Dialogue(
+                    text = "That's the gift of the garden. You can return to the world below now, but you'll carry this peace with you. Or... you could stay and learn more. The choice is yours.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.GardenKeeper
+                ),
+                COYAState.StoryActions(
+                    defaultActions = listOf(
+                        Action.DefaultAction(
+                            actionId = "ending_enlightenment",
+                            text = "Stay and Learn From The Garden",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "ending_enlightenment"
+                        ),
+                        Action.DefaultAction(
+                            actionId = "ending_return_peaceful",
+                            text = "Return to The City With New Wisdom",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "ending_return_peaceful"
+                        )
+                    )
+                )
+            )
+        )
+
+        // NEW CONTENT: Cave Exploration Path
+        val ExploreCaveDeeper = StoryBranch(
+            storyBranchId = "explore_cave_deeper",
+            list = listOf(
+                COYAState.Story(
+                    text = "Ignoring the old man's cryptic words, I turned away from him and ventured deeper into the cavern. The glowing walls pulsed with an otherworldly light, casting dancing shadows on the stone."
+                ),
+                COYAState.Image(imageUrl = "https://images.unsplash.com/photo-1544551763-46a013bb70d5"),
+                COYAState.Story(
+                    text = "The passage narrowed, then opened into a vast underground chamber. Stalactites hung from the ceiling like teeth, and in the center of the chamber, a pool of crystal-clear water reflected the luminescent ceiling like a mirror."
+                ),
+                COYAState.Story(
+                    text = "As I approached the pool, the water began to ripple, though there was no wind. A form emerged from its depths—not quite solid, not quite liquid, but something in between. It coalesced into a vaguely humanoid shape, glowing with soft blue light."
+                ),
+                COYAState.Dialogue(
+                    text = "A visitor from the world above. It has been long since one ventured this deep.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.CaveSpirit
+                ),
+                COYAState.Dialogue(
+                    text = "What... what are you?",
+                    type = DialogType.RIGHT,
+                    character = si.vstaric.tuuscasus.game.model.Character.Player
+                ),
+                COYAState.Dialogue(
+                    text = "I am memory. I am possibility. I am the echo of what was and the whisper of what could be. This cave exists between moments, between choices.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.CaveSpirit
+                ),
+                COYAState.StoryActions(
+                    defaultActions = listOf(
+                        Action.DefaultAction(
+                            actionId = "ask_cave_spirit",
+                            text = "Ask How To Leave",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "ask_cave_spirit"
+                        ),
+                        Action.DefaultAction(
+                            actionId = "touch_the_pool",
+                            text = "Touch The Pool",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "touch_the_pool"
+                        )
+                    )
+                )
+            )
+        )
+
+        val AskCaveSpirit = StoryBranch(
+            storyBranchId = "ask_cave_spirit",
+            list = listOf(
+                COYAState.Dialogue(
+                    text = "How do I get out of here? How do I return to my world?",
+                    type = DialogType.RIGHT,
+                    character = si.vstaric.tuuscasus.game.model.Character.Player
+                ),
+                COYAState.Dialogue(
+                    text = "Return? But you are already where you need to be. Every path you've walked, every choice you've made, led you here.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.CaveSpirit
+                ),
+                COYAState.Dialogue(
+                    text = "The old man offers you repetition—the same choice, the same game, forever. I offer you transformation. Look into the pool, and see what you could become.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.CaveSpirit
+                ),
+                COYAState.StoryActions(
+                    defaultActions = listOf(
+                        Action.DefaultAction(
+                            actionId = "look_into_pool",
+                            text = "Look Into The Pool",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "look_into_pool"
+                        ),
+                        Action.DefaultAction(
+                            actionId = "refuse_spirit",
+                            text = "Refuse and Return to The Old Man",
                             state = ActionState.ENABLED,
                             nextStoryBranchId = "rps_start"
                         )
@@ -372,19 +647,241 @@ class StoryDataSource {
             )
         )
 
+        val TouchThePool = StoryBranch(
+            storyBranchId = "touch_the_pool",
+            list = listOf(
+                COYAState.Story(
+                    text = "Without thinking, I reached out and touched the surface of the pool. The water was neither warm nor cold—it felt like touching liquid starlight."
+                ),
+                COYAState.Story(
+                    text = "Ripples spread from my fingertips, and suddenly I saw images in the water—countless versions of myself, living countless different lives. In one, I stayed in the café and became friends with the barista. In another, I never entered the park. In yet another, I'm standing exactly where I am now, but making a different choice."
+                ),
+                COYAState.Dialogue(
+                    text = "You see it now, don't you? The infinite branches of possibility. Each choice creates a new world, a new you.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.CaveSpirit
+                ),
+                COYAState.StoryActions(
+                    defaultActions = listOf(
+                        Action.DefaultAction(
+                            actionId = "look_into_pool",
+                            text = "Look Deeper Into The Pool",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "look_into_pool"
+                        )
+                    )
+                )
+            )
+        )
+
+        val LookIntoPool = StoryBranch(
+            storyBranchId = "look_into_pool",
+            list = listOf(
+                COYAState.Story(
+                    text = "I gazed deeper into the pool's surface, and the images intensified. I saw myself wandering the city streets, but with purpose now. I saw myself in the rooftop garden, learning from the Garden Keeper. I saw myself helping others find their own paths."
+                ),
+                COYAState.Dialogue(
+                    text = "You understand now. This cave is not a prison—it's a crossroads. A place where you can choose to transform.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.CaveSpirit
+                ),
+                COYAState.Dialogue(
+                    text = "I can offer you two paths. One returns you to the surface, but you will remember this encounter. You'll carry the knowledge of possibility with you. The other... keeps you here, in this space between choices, where you can observe all paths without walking any.",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.CaveSpirit
+                ),
+                COYAState.Dialogue(
+                    text = "Which will you choose?",
+                    type = DialogType.LEFT,
+                    character = si.vstaric.tuuscasus.game.model.Character.CaveSpirit
+                ),
+                COYAState.StoryActions(
+                    defaultActions = listOf(
+                        Action.DefaultAction(
+                            actionId = "ending_freedom",
+                            text = "Return to The Surface",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "ending_freedom"
+                        ),
+                        Action.DefaultAction(
+                            actionId = "ending_observer",
+                            text = "Stay and Become An Observer",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "ending_observer"
+                        )
+                    )
+                )
+            )
+        )
+
+        // NEW CONTENT: Multiple Endings
+        val EndingEnlightenment = StoryBranch(
+            storyBranchId = "ending_enlightenment",
+            list = listOf(
+                COYAState.Image(imageUrl = "https://images.unsplash.com/photo-1518709268805-4e9042af9f23"),
+                COYAState.Story(
+                    text = "I chose to stay. Days turned into weeks, weeks into months. The Garden Keeper taught me the language of plants, the rhythm of seasons, the patience of growth."
+                ),
+                COYAState.Story(
+                    text = "The city below continued its frantic pace, but I found peace in the slow unfurling of leaves, the gradual opening of buds. I learned that true adventure isn't always about movement—sometimes it's about stillness, about being present in each moment."
+                ),
+                COYAState.Story(
+                    text = "Years later, when the Garden Keeper's time came to rest, I took up her role. Now I tend these plants, and occasionally, someone climbs those stairs, seeking something they can't quite name."
+                ),
+                COYAState.Story(
+                    text = "And I smile, just as she once smiled at me, welcoming them to the sanctuary."
+                ),
+                COYAState.Story(
+                    text = "THE END - The Garden Keeper's Legacy"
+                ),
+                COYAState.StoryActions(
+                    defaultActions = listOf(
+                        Action.DefaultAction(
+                            actionId = "start_game",
+                            text = "Begin A New Story",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "start_game"
+                        )
+                    )
+                )
+            )
+        )
+
+        val EndingReturnPeaceful = StoryBranch(
+            storyBranchId = "ending_return_peaceful",
+            list = listOf(
+                COYAState.Image(imageUrl = "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df"),
+                COYAState.Story(
+                    text = "I thanked the Garden Keeper and descended back to the city streets. But something had changed. The noise didn't overwhelm me anymore. The crowds didn't feel suffocating."
+                ),
+                COYAState.Story(
+                    text = "I carried the garden's peace within me, a quiet center that remained calm no matter what swirled around it. People noticed the change—strangers smiled at me more, as if sensing a tranquility they wanted to be near."
+                ),
+                COYAState.Story(
+                    text = "I returned to my regular life, but it wasn't regular anymore. Every moment held possibility. Every encounter was an opportunity for connection. I had learned the secret: adventure doesn't require exotic locations—it blooms wherever we choose to be fully present."
+                ),
+                COYAState.Story(
+                    text = "And sometimes, on difficult days, I would climb those stairs again, sit beneath the wisteria, and remember who I really was."
+                ),
+                COYAState.Story(
+                    text = "THE END - The Peaceful Return"
+                ),
+                COYAState.StoryActions(
+                    defaultActions = listOf(
+                        Action.DefaultAction(
+                            actionId = "start_game",
+                            text = "Begin A New Story",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "start_game"
+                        )
+                    )
+                )
+            )
+        )
+
+        val EndingFreedom = StoryBranch(
+            storyBranchId = "ending_freedom",
+            list = listOf(
+                COYAState.Story(
+                    text = "The Cave Spirit's form shimmered, and the pool's surface became like glass. I stepped onto it, and instead of falling through, I walked across it as if it were solid ground."
+                ),
+                COYAState.Story(
+                    text = "With each step, the cavern around me faded. The glowing walls dimmed, the old man's presence vanished, and I found myself rising, floating upward through layers of earth and stone."
+                ),
+                COYAState.Image(imageUrl = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4"),
+                COYAState.Story(
+                    text = "I emerged not in the park where I fell, but on a hilltop overlooking the entire city. The sun was setting, painting the sky in shades of orange and purple. But I saw it differently now—I saw all the paths not taken, all the possibilities still waiting."
+                ),
+                COYAState.Story(
+                    text = "I understood that every moment was a choice, every choice a new world. The cave hadn't trapped me—it had freed me to see that I was never trapped at all. Every day is a new adventure, and every adventure is a choice to live fully."
+                ),
+                COYAState.Story(
+                    text = "I walked down the hill toward the city lights, ready to explore with new eyes, carrying the knowledge that infinite possibilities lay in every direction."
+                ),
+                COYAState.Story(
+                    text = "THE END - The Freedom of Choice"
+                ),
+                COYAState.StoryActions(
+                    defaultActions = listOf(
+                        Action.DefaultAction(
+                            actionId = "start_game",
+                            text = "Begin A New Story",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "start_game"
+                        )
+                    )
+                )
+            )
+        )
+
+        val EndingObserver = StoryBranch(
+            storyBranchId = "ending_observer",
+            list = listOf(
+                COYAState.Story(
+                    text = "I chose to stay, to become like the Cave Spirit—existing between moments, observing the infinite branches of reality without walking any single path."
+                ),
+                COYAState.Story(
+                    text = "My form slowly dissolved, becoming one with the pool, with the cave, with the space between choices. I could see everything now—every person in the city above, every decision they faced, every path they might take."
+                ),
+                COYAState.Story(
+                    text = "I watched myself in other timelines: becoming a barista's friend, a garden keeper's student, an old man's eternal opponent. I watched others fall into the cave as I had, and I whispered to them as the Cave Spirit once whispered to me."
+                ),
+                COYAState.Story(
+                    text = "Time lost all meaning. I was everywhere and nowhere, everyone and no one. I had become the crossroads itself, the moment of possibility, the breath before a choice is made."
+                ),
+                COYAState.Story(
+                    text = "And in that eternal moment, I understood: every story is happening simultaneously, every ending is also a beginning, and in the space between, all things are possible."
+                ),
+                COYAState.Story(
+                    text = "THE END - The Observer Between Worlds"
+                ),
+                COYAState.StoryActions(
+                    defaultActions = listOf(
+                        Action.DefaultAction(
+                            actionId = "start_game",
+                            text = "Begin A New Story",
+                            state = ActionState.ENABLED,
+                            nextStoryBranchId = "start_game"
+                        )
+                    )
+                )
+            )
+        )
+
         return mapOf(
+            // Original Story Branches
             "start_game" to Start,
             "wander_the_streets" to InTheStreets,
             "grab_a_coffee" to grabACoffee,
             "goto_the_park" to InThePark,
             "explore_the_park" to ExploreThePark,
             "look_into_the_abyss" to InTheAbyss,
+
+            // Rock Paper Scissors Game
             "rps_start" to RockPaperScissors_Start,
             "rps_success_scissors" to RockPaperScissors_SuccessScissors,
             "rps_success_rock" to RockPaperScissors_SuccessRock,
             "rps_success_paper" to RockPaperScissors_SuccessPaper,
             "rps_draw" to RockPaperScissors_Draw,
             "rps_fail" to RockPaperScissors_Fail,
+
+            // Rooftop Garden Path
+            "goto_rooftop_garden" to RooftopGardenEntrance,
+            "ask_about_garden" to AskAboutGarden,
+            "explore_garden" to ExploreGarden,
+            "meditate_in_garden" to MeditateInGarden,
+
+            // Cave Exploration Path
+            "explore_cave_deeper" to ExploreCaveDeeper,
+            "ask_cave_spirit" to AskCaveSpirit,
+            "touch_the_pool" to TouchThePool,
+            "look_into_pool" to LookIntoPool,
+
+            // Multiple Endings
+            "ending_enlightenment" to EndingEnlightenment,
+            "ending_return_peaceful" to EndingReturnPeaceful,
+            "ending_freedom" to EndingFreedom,
+            "ending_observer" to EndingObserver,
         )
     }
 }
