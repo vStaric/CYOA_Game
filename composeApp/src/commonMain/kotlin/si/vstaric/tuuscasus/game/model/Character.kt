@@ -28,4 +28,25 @@ sealed class Character(
         avatarIcon = "https://cdn-icons-png.flaticon.com/512/7178/7178489.png",
         photoUrl = "https://images.freeimages.com/images/large-previews/7f0/old-man-1561812.jpg"
     )
+
+    object GardenKeeper : Character(
+        id = "garden_keeper",
+        name = "Garden Keeper",
+        avatarIcon = "https://cdn-icons-png.flaticon.com/512/2922/2922566.png",
+        photoUrl = "https://images.pexels.com/photos/8112186/pexels-photo-8112186.jpeg"
+    )
+
+    object MysteriousStranger : Character(
+        id = "mysterious_stranger",
+        name = "Stranger",
+        avatarIcon = "https://cdn-icons-png.flaticon.com/512/4140/4140047.png",
+        photoUrl = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d"
+    )
+
+    object CaveSpirit : Character(
+        id = "cave_spirit",
+        name = "Cave Spirit",
+        avatarIcon = "https://cdn-icons-png.flaticon.com/512/5261/5261794.png",
+        photoUrl = "https://images.unsplash.com/photo-1518709268805-4e9042af9f23"
+    )
 }
